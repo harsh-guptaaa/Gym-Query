@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Submit a Query</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; padding: 0; margin: 0; }
+    .container {
+    max-width: 600px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 180px;
+    }
+
+    h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #111827;
+    }
+
+    label {
+    font-weight: 600;
+    margin-top: 20px;
+    display: block;
+    color: #1f2937;
+    }
+
+    input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+    }
+
+    button {
+    margin-top: 30px;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    }
+
+    button:hover {
+    background-color: #dc2626;
+    }
+
+    .success {
+    display: none;
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 14px;
+    border-radius: 6px;
+    margin-top: 20px;
+    border: 1px solid #10b981;
+    text-align: center;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="container">
+    <!-- Logo using desktop path -->
+    <img src="C:/Users/harsh/Desktop/123.jpeg" alt="IGNYT Fitness Logo" class="logo" style="max-width:240px;">
+
+    <h2>Submit Your Query</h2>
+    <form id="queryForm">
+      <label>Name</label>
+      <input type="text" name="from_name" required>
+
+      <label>Email</label>
+      <input type="email" name="from_email" required>
+
+      <label>Message</label>
+      <textarea name="message" rows="5" required></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+
+    <div class="success" id="successMessage">
+      ✅ Query sent successfully!
+    </div>
+  </div>
+
+  <script>
+    emailjs.init("6xGoMZtcx3UMtrhKY"); // Step 4: Replace this with your EmailJS Public Key
+
+    document.getElementById('queryForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      emailjs.sendForm('service_o4bw0z5', 'template_4xth357', this)
+        .then(function() {
+          document.getElementById("successMessage").style.display = "block";
+          document.getElementById("queryForm").reset();
+        }, function(error) {
+          alert("Sending failed: " + JSON.stringify(error));
+        });
+    });
+  </script>
+
+</body>
+</html>
